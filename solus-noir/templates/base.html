@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solus Noir Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <h1 id="main-title">SOLUS NOIR</h1>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="/store" class="nav-link">Store</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+      
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Solus Noir. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+    <script>
+        // Update audio player with the selected song's URL
+        function updatePlayer(audioUrl) {
+            const audioPlayer = document.getElementById('audio-player');
+            const audioSource = document.getElementById('audio-source');
+            audioSource.src = audioUrl;
+            audioPlayer.load(); // Reload the player with the new audio file
+            audioPlayer.play(); // Start playing the audio
+        }
+    </script>
+</body>
+</html>

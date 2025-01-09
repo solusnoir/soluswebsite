@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="titleport">Portfolio</h1>
+   
+    <!-- Navigation Buttons -->
+    <nav class="portfolio-nav">
+        <a href="#acoustic" class="cta-button">Acoustic Demos</a>
+        <a href="#beats" class="cta-button">Beats</a>
+        <a href="#demos" class="cta-button">Demos</a>
+    </nav>
+
+    <!-- Acoustic Section -->
+    <section id="acoustic" class="audio-section">
+        <h2 class="section-title">Acoustic Demos</h2>
+        {% if acoustic_files_info %}
+            <div class="audio-grid">
+                {% for file in acoustic_files_info %}
+                <div class="audio-card">
+                    <h3 class="audio-name">{{ file.name }}</h3>
+                    <audio controls>
+                        <source src="{{ file.url }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="{{ file.download_url }}" download class="download-btn">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-files-message">No acoustic files available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Beats Section -->
+    <section id="beats" class="audio-section">
+        <h2 class="section-title">Beats</h2>
+        {% if beats_files_info %}
+            <div class="audio-grid">
+                {% for file in beats_files_info %}
+                <div class="audio-card">
+                    <h3 class="audio-name">{{ file.name }}</h3>
+                    <audio controls>
+                        <source src="{{ file.url }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="{{ file.download_url }}" download class="download-btn">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-files-message">No beats files available.</p>
+        {% endif %}
+    </section>
+
+    <!-- Demos Section -->
+    <section id="demos" class="audio-section">
+        <h2 class="section-title">Demos</h2>
+        {% if demo_files_info %}
+            <div class="audio-grid">
+                {% for file in demo_files_info %}
+                <div class="audio-card">
+                    <h3 class="audio-name">{{ file.name }}</h3>
+                    <audio controls>
+                        <source src="{{ file.url }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="{{ file.download_url }}" download class="download-btn">
+                        <i class="fa fa-download"></i> Download
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-files-message">No demo files available.</p>
+        {% endif %}
+    </section>
+{% endblock %}

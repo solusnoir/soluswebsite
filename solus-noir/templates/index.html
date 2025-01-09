@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solus Noir Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <!-- Intro Section -->
+    <section class="intro-section" id="intro">
+        <h1 id="intro-title">SOLUS NOIR</h1>
+    </section>
+
+    <header class="header">
+        <div class="nav-container">
+            <h1 id="main-title">SOLUS NOIR</h1>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="/store" class="nav-link">Store</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Visitor Counter Section -->
+    <section class="visitor-counter">
+        <h2>Visitors since January 2025: {{ visitor_count }}</h2>
+    </section>
+
+    <main>
+        <!-- Hero Section for Upcoming Release -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Upcoming Release: Drunk</h2>
+                <div class="cover-art">
+                    <img class="presaveimage" src="{{ url_for('static', filename='images/drunk_cover.jpg') }}"
+                        alt="Drunk Cover Art">
+                </div>
+                <p>Release Date: 24 February 2025</p>
+                <a href="https://distrokid.com/hyperfollow/solusnoir/drunk" target="_blank" class="cta-button">Pre-Save
+                    on Spotify</a>
+
+                <div class="audio-snippet">
+                    <p>Listen to a preview of "Drunk"</p>
+                    <audio controls>
+                        <source src="{{ url_for('static', filename='snippet/drunk_snippet.wav') }}" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Release Section -->
+        <section class="latest-release">
+            <h2>Latest Spotify Release:</h2>
+
+            <div class="spotify-container">
+                <!-- Embed latest Spotify track -->
+                <iframe style="border-radius:12px"
+                    src="https://open.spotify.com/embed/track/1pymWT6fxhVOjzCjacufk2?utm_source=generator&theme=0"
+                    width="100%" height="352" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Portfolio Preview Section -->
+        <section class="portfolio-preview">
+            <h2 class="section-title">Explore My Latest Audio Demos</h2>
+
+            <div class="audio-preview-container">
+                <h3 class="demos-title">Audio Demos</h3>
+                {% if demo_files_info %}
+                <div class="audio-preview">
+                    <ul class="audio-list">
+                        {% for file in demo_files_info %}
+                        <li class="audio-item">
+                            <h4 class="audio-name">{{ file.name }}</h4>
+                            <audio controls>
+                                <source src="{{ file.url }}" type="audio/wav">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% else %}
+                <p class="no-demos-message">No demos available. Stay tuned for more updates!</p>
+                {% endif %}
+            </div>
+
+            <!-- View Full Portfolio Button -->
+            <div class="portfolio-button">
+                <a href="/portfolio" class="cta-button">View Full Portfolio</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // JavaScript for handling scroll-based navbar visibility
+        let introSection = document.getElementById("intro");
+        let header = document.querySelector(".header");
+        
+        window.addEventListener("scroll", function() {
+            let introHeight = introSection.clientHeight;
+            let scrollPosition = window.scrollY;
+            
+            if (scrollPosition > introHeight) {
+                header.classList.add("visible");
+            } else {
+                header.classList.remove("visible");
+            }
+        });
+    </script>
+</body>
+
+</html>
