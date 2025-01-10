@@ -411,12 +411,24 @@ header nav ul li a:hover {
   margin-bottom: 10px; /* Spacing specific to iframe */
 }
 
+/* Audio Player Styling */
 .audio-drunk {
-  margin-top: 0px;
-  margin-bottom: 16px;
-  width: 80%;
+  width: 100%;
+  max-width: 100%;
   height: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
   border-radius: 15px;
+}
+
+
+/* Additional Media Query for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .audio-drunk {
+    width: 100%; /* Ensure it fills the available space */
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
 
