@@ -1,9 +1,8 @@
 import os
 import logging
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from dotenv import load_dotenv
 import json
-import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -14,7 +13,8 @@ class Config:
     ACOUSTIC_FOLDER = os.path.join(BASE_DIR, 'static', 'acoustic')
     BEATS_FOLDER = os.path.join(BASE_DIR, 'static', 'beats')
     DEMO_FOLDER = os.path.join(BASE_DIR, 'static', 'demos')
-    LIVE_FOLDER = os.path.join(BASE_DIR, 'static', 'live')  # Add the live folder
+    LIVE_FOLDER = os.path.join(BASE_DIR, 'static', 'live')
+    SONGS_FOLDER = os.path.join(BASE_DIR, 'static', 'songs')  # Add the songs folder
     ALLOWED_EXTENSIONS = {'wav', 'mp3', 'ogg'}
     VISITOR_FILE = 'visitor_count.json'
 
@@ -40,6 +40,7 @@ os.makedirs(app.config['ACOUSTIC_FOLDER'], exist_ok=True)
 os.makedirs(app.config['BEATS_FOLDER'], exist_ok=True)
 os.makedirs(app.config['DEMO_FOLDER'], exist_ok=True)
 os.makedirs(app.config['LIVE_FOLDER'], exist_ok=True)
+os.makedirs(app.config['SONGS_FOLDER'], exist_ok=True)  # Create the songs folder
 
 # Function to get the current visitor count from the visitor_count.json file
 def get_visitor_count():
@@ -67,6 +68,19 @@ def get_audio_files_from_folder(folder_path, limit=2):
             })
     return audio_files_info
 
+# Function to get a list of songs from the songs folder
+def get_songs_from_folder(folder_path):
+    songs_info = []
+    if os.path.exists(folder_path):
+        files = [f for f in os.listdir(folder_path) if f.endswith(tuple(app.config['ALLOWED_EXTENSIONS']))]
+        for filename in files:
+            songs_info.append({
+                'title': filename.split('.')[0],  # Use filename without extension as title
+                'url': f'/static/{os.path.basename(folder_path)}/{filename}',
+                'download_url': f'/static/{os.path.basename(folder_path)}/{filename}',
+            })
+    return songs_info
+
 # Routes
 @app.route('/')
 def home():
@@ -74,20 +88,34 @@ def home():
     acoustic_files_info = get_audio_files_from_folder(app.config['ACOUSTIC_FOLDER'])
     beats_files_info = get_audio_files_from_folder(app.config['BEATS_FOLDER'])
     demo_files_info = get_audio_files_from_folder(app.config['DEMO_FOLDER'])
-    return render_template('index.html', acoustic_files_info=acoustic_files_info,
-                           beats_files_info=beats_files_info, demo_files_info=demo_files_info,
+    songs_info = get_songs_from_folder(app.config['SONGS_FOLDER'])  # Fetch songs data
+
+    return render_template('index.html', 
+                           acoustic_files_info=acoustic_files_info,
+                           beats_files_info=beats_files_info, 
+                           demo_files_info=demo_files_info,
+                           songs_info=songs_info,  # Pass songs_info to the template
                            visitor_count=get_visitor_count())
 
-@app.route('/portfolio')
+@app.route('/portfolio', methods=['GET'])
 def portfolio():
     try:
+        # Get the audio files information for different categories
         acoustic_files_info = get_audio_files_from_folder(app.config['ACOUSTIC_FOLDER'], limit=None)
         beats_files_info = get_audio_files_from_folder(app.config['BEATS_FOLDER'], limit=None)
         demo_files_info = get_audio_files_from_folder(app.config['DEMO_FOLDER'], limit=None)
-        live_files_info = get_audio_files_from_folder(app.config['LIVE_FOLDER'], limit=None)  # Fetch live files
-        return render_template('portfolio.html', acoustic_files_info=acoustic_files_info,
-                               beats_files_info=beats_files_info, demo_files_info=demo_files_info,
-                               live_files_info=live_files_info)  # Pass live files to the template
+        live_files_info = get_audio_files_from_folder(app.config['LIVE_FOLDER'], limit=None)
+        
+        # If the request is expecting JSON (e.g., via AJAX), return JSON response
+        if request.is_xhr or request.accept_mimetypes['application/json']:
+            songs_info = get_songs_from_folder(app.config['SONGS_FOLDER'])  # Fetch songs data
+            return jsonify(songs_info=songs_info)
+        else:
+            return render_template('portfolio.html', 
+                                   acoustic_files_info=acoustic_files_info,
+                                   beats_files_info=beats_files_info, 
+                                   demo_files_info=demo_files_info,
+                                   live_files_info=live_files_info)  # Render the portfolio template with all audio files
     except Exception as e:
         logger.error(f"Error fetching files from folders: {str(e)}")
         return render_template('portfolio.html', error="Failed to retrieve audio files")
