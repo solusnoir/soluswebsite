@@ -27,6 +27,7 @@ class Config:
     ACOUSTIC_FOLDER = os.path.join(BASE_DIR, 'static', 'acoustic')
     BEATS_FOLDER = os.path.join(BASE_DIR, 'static', 'beats')
     DEMO_FOLDER = os.path.join(BASE_DIR, 'static', 'demos')
+    LIVE_FOLDER = os.path.join(BASE_DIR, 'static', 'live')  # Add the live folder
     ALLOWED_EXTENSIONS = {'wav', 'mp3', 'ogg'}
     VISITOR_FILE = 'visitor_count.json'
 
@@ -39,6 +40,7 @@ app.config.from_object(Config)
 os.makedirs(app.config['ACOUSTIC_FOLDER'], exist_ok=True)
 os.makedirs(app.config['BEATS_FOLDER'], exist_ok=True)
 os.makedirs(app.config['DEMO_FOLDER'], exist_ok=True)
+os.makedirs(app.config['LIVE_FOLDER'], exist_ok=True)  # Ensure live folder exists
 
 # Function to get the current visitor count from the visitor_count.json file
 def get_visitor_count():
@@ -58,11 +60,10 @@ def get_audio_files_from_folder(folder_path, limit=2):
     if os.path.exists(folder_path):
         files = [f for f in os.listdir(folder_path) if f.endswith(tuple(app.config['ALLOWED_EXTENSIONS']))]
         for filename in files[:limit]:
-            file_path = os.path.join(folder_path, filename)
             audio_files_info.append({
                 'name': filename,
-                'url': f'/static/{folder_path.split("/")[-1]}/{filename}',
-                'download_url': f'/static/{folder_path.split("/")[-1]}/{filename}',
+                'url': f'/static/{os.path.basename(folder_path)}/{filename}',
+                'download_url': f'/static/{os.path.basename(folder_path)}/{filename}',
                 'created_time': '2025-01-01',  # Optional: date of creation
             })
     return audio_files_info
@@ -84,8 +85,10 @@ def portfolio():
         acoustic_files_info = get_audio_files_from_folder(app.config['ACOUSTIC_FOLDER'], limit=None)
         beats_files_info = get_audio_files_from_folder(app.config['BEATS_FOLDER'], limit=None)
         demo_files_info = get_audio_files_from_folder(app.config['DEMO_FOLDER'], limit=None)
+        live_files_info = get_audio_files_from_folder(app.config['LIVE_FOLDER'], limit=None)  # Fetch live files
         return render_template('portfolio.html', acoustic_files_info=acoustic_files_info,
-                               beats_files_info=beats_files_info, demo_files_info=demo_files_info)
+                               beats_files_info=beats_files_info, demo_files_info=demo_files_info,
+                               live_files_info=live_files_info)  # Pass live files to the template
     except Exception as e:
         logger.error(f"Error fetching files from folders: {str(e)}")
         return render_template('portfolio.html', error="Failed to retrieve audio files")
@@ -104,5 +107,5 @@ def increment_visitor_count():
         logger.error(f"Error incrementing visitor count: {str(e)}")
 
 if __name__ == '__main__':
-    # Don't use app.run() in production. This is for local dev only.
-    pass
+    # Enable debug mode for local development
+    app.run(debug=True, host='127.0.0.1', port=5000)

@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #000; /* Noir-inspired background */
+  background-color: #000000f6; /* Noir-inspired background */
   color: #e0e0e0;
   line-height: 1.6;
   font-size: 16px;
@@ -29,7 +29,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background: #000;
   color: #fff;
   font-size: 3rem;
@@ -37,20 +37,63 @@ a:hover {
   text-align: center;
   position: relative;
   z-index: 2;
-  transition: transform 0.5s ease-out;
+  overflow: hidden;  /* Prevents overflow when the title is moving */
 }
+
+/* Initial state of the title before animation */
+#intro-title {
+  opacity: 0; /* Title starts hidden */
+  transform: translateY(100px); /* Start below its final position */
+  animation: moveUp 1.5s ease-out forwards; /* Animation for the title */
+}
+
+/* Keyframes for the move up animation */
+@keyframes moveUp {
+  10% {
+    opacity: 0;
+    transform: translateY(40px);
+    /*Startbelow*/:;
+    -webkit-transform: translateY(40px);
+    -moz-transform: translateY(40px);
+    -ms-transform: translateY(40px);
+    -o-transform: translateY(40px);
+}
+  100% {
+    opacity: 5;
+    transform: translateY(0); /* End at its normal position */
+  }
+}
+
+
+
+
 
 /* Header */
 .header {
   position: fixed;
-  top: -70px; /* Initially hidden */
+  top: -100px; /* Initially hidden */
   left: 0;
   width: 100%;
   background: #121212;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   z-index: 3;
+  overflow: hidden;
   transition: top 0.3s ease-in-out;
 }
+
+
+.header-portfolio {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  padding: 10px 20px;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
 
 .header.visible {
   top: 0; /* Visible when scrolling down */
@@ -63,6 +106,18 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
+}
+
+.visitor-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: #0d0d0d;
+  margin: 35px auto;
+  border-radius: 30px;
+  max-width: 500px;
 }
 
 /* Main Title */
@@ -98,104 +153,91 @@ header nav ul li a:hover {
 /* Hero Section */
 .hero-section {
   text-align: center;
-  padding: 60px 20px;
+  padding: 20px 20px;
 }
 
 .hero-section h2 {
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   color: #ffffff;
   margin-bottom: 15px;
 }
 
 .hero-section p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 20px;
 }
 
+
+
+/* Hero Section Styling */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 60vh;
+  background: url('/static/images/hero-bg.jpg') no-repeat center center/cover; /* Replace with your hero image */
+  color: white;
+}
+
+.hero-content {
+  max-width: 590px;
+  padding: 20px;
+  background: rgba(19, 19, 19, 0.6);
+  border-radius: 19px;
+  margin: 0 auto;
+  /*Thisensuresthehero-contentiscentered*/:;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  -ms-border-radius: 19px;
+  -o-border-radius: 19px;
+}
+
+
+
+
 .presaveimage {
-  max-width: 44%;
+  max-width: 85%;
   height: auto;
-  margin: 20px auto;
+  margin: 10px ;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(67, 67, 67, 0.5);
 }
 
 .cta-button {
   display: inline-block;
-  padding: 15px 30px;
-  background: #ffffff;
-  color: #000;
+  padding: 20px 40px;
+  background: #5d2e2e;
+  margin-bottom: 30px;
+  margin-top: 20;
+  color: #ffffff;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 .cta-button:hover {
-  background: #00bfff;
+  background: #171717;
   color: #ffffff;
   transform: scale(1.05);
 }
 
-/* Audio Snippets */
-.audio-snippet audio {
-  width: 100%;
-  max-width: 500px;
-  margin-top: 15px;
-  border-radius: 8px;
-}
-
-/* Visitor Counter */
-.visitor-counter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-  background: #121212;
-  margin: 35px auto;
-  border-radius: 30px;
-  max-width: 500px;
-}
-
-/* Latest Release */
-.latest-release {
-  text-align: center;
-  padding: 40px 20px;
-  margin-top: 30px;
-}
-
-.spotify-container iframe {
-  border-radius: 15px;
-  width: 90%;
-  max-width: 600px;
-}
-
-/* Audio Section */
-.audio-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 40px auto;
-  max-width: 800px;
-}
-
-.audio-section li {
-  background: #1a1a1a;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.audio-section li h3 {
-  font-size: 1.2rem;
+/* Shared Section Styles */
+.section-title {
+  font-size: 2rem;
   color: #ffffff;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
 }
 
-.audio-section audio {
-  width: 100%;
-  margin-top: 10px;
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
 }
 
 /* Portfolio Preview Section */
@@ -213,66 +255,15 @@ header nav ul li a:hover {
   justify-content: center;
 }
 
-/* Section Title */
-.section-title {
-  font-size: 5rem;
-  color: #ffffff;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.audio-preview-container {
-  margin-bottom: 20px;
-}
-
-.audio-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-  max-width: 500px;
-}
-
-.audio-item {
-  background: #1f1f1f;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.audio-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
-}
-
-.audio-name {
-  font-size: 4rem;
-  color: #ffffff;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-audio {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.no-demos-message {
-  font-size: 1.2rem;
-  color: #ff4c4c;
-  margin-top: 20px;
-}
-
-.portfolio-button {
-  margin-top: 30px;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: center;
+  }
+
+  .header {
+    top: -120px;
   }
 
   header nav ul {
@@ -281,7 +272,7 @@ audio {
   }
 
   .spotify-container iframe {
-    width: 100%;
+    width: 70%;
   }
 
   .hero-section h2 {
@@ -293,15 +284,131 @@ audio {
     font-size: 0.9rem;
   }
 
-  .audio-section li {
-    padding: 15px;
+  .portfolio-preview {
+    padding: 30px 15px;
+  }
+
+  .section-title {
+    font-size: 3rem;
   }
 
   .visitor-counter {
     padding: 45px 15px;
   }
 
-  .intro-section {
-    font-size: 3rem;
-  }
+
+}
+
+/* Section Styling */
+.audio-section {
+  padding: 60px 30px;
+  background: #787878;
+  color: #333;
+}
+
+.audio-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.audio-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007BFF;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.download-btn:hover {
+  color: #0056b3;
+}
+
+
+.coming-soon {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 420px;
+  text-align: center;
+  content: flex;
+}
+
+
+/* Acoustic Section */
+.acoustic-section {
+  margin-top: 20000000px; /* You can increase this value to move it further down */
+  background: rgba(255, 255, 255, 0);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 150px;
+}
+
+
+.acoustic-section h3 {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+
+
+.acoustic-section p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.acoustic-section p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.spotify-container {
+  width: 70%;
+  justify-content: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spotify-container iframe {
+  width: 70%;
+  justify-content: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px; /* Spacing specific to iframe */
+}
+
+.audio-drunk {
+  margin-top: 0px;
+  margin-bottom: 16px;
+  width: 80%;
+  height: auto;
+  border-radius: 15px;
+}
+
+
+.presavetext {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
