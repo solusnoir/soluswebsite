@@ -1,0 +1,57 @@
+<!-- songs.html -->
+<section class="songs-section">
+    <h3>Our Latest Tracks</h3>
+    <ul class="song-list">
+        {% for song in songs_info %}
+        <li class="song-item">
+            <h4>{{ song.title }}</h4>
+            <audio controls>
+                <source src="{{ song.url }}" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<style>
+    /* Simple Black & White Styling for Songs */
+    .songs-section {
+        background-color: black;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .songs-section h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .song-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .song-item {
+        margin: 15px 0;
+        padding: 10px;
+        border: 1px solid white;
+        background-color: #333;
+        display: inline-block;
+        width: 90%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .song-item h4 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    audio {
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>

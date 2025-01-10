@@ -71,6 +71,28 @@
             </div>
         </section>
 
+
+        <!-- Include songs.html content here -->
+        {% include 'songs.html' %}
+<!-- Songs Section -->
+<section class="songs-section">
+    <h3>Our Latest Tracks</h3>
+    <ul class="song-list">
+        {% for song in songs_info %}
+        <li class="song-item">
+            <h4>{{ song.title }}</h4>
+            <audio controls>
+                <source src="{{ song.url }}" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+
+
+
         <!-- Latest Release Section -->
         <section class="latest-release">
             <h2 class="spotify-container">Latest Spotify Release:</h2>

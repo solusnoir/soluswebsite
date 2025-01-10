@@ -4,12 +4,12 @@ async function fetchSongs() {
         if (!response.ok) throw new Error('Failed to fetch songs');
 
         const data = await response.json();
-        if (!data.audio_files_info || data.audio_files_info.length === 0) {
+        if (!data.songs_info || data.songs_info.length === 0) {
             displayNoSongsMessage(); // Display message when no songs are found
             return;
         }
 
-        updateSongList(data.audio_files_info); // Update the DOM with audio files
+        updateSongList(data.songs_info); // Update the DOM with audio files
     } catch (error) {
         console.error('Error fetching songs:', error);
         displayErrorMessage('Error loading songs.'); // Display error message
@@ -37,7 +37,7 @@ function createSongListItem(song) {
 
     const downloadLink = document.createElement('a');
     downloadLink.href = song.download_url;
-    downloadLink.textContent = `Download ${song.name}`;
+    downloadLink.textContent = `Download ${song.title}`;
     downloadLink.target = '_blank';
 
     listItem.appendChild(audioElement);
