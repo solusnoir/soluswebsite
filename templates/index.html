@@ -15,6 +15,7 @@
         <h1 id="intro-title">SOLUS NOIR</h1>
     </section>
 
+    <!-- header -->
     <header class="header">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
@@ -38,27 +39,41 @@
         <section class="hero-section">
             <div class="hero-content">
                 <h2>Upcoming Release: Drunk</h2>
+                <p>Release Date: 24 February 2025</p>
+
                 <div class="cover-art">
                     <img class="presaveimage" src="{{ url_for('static', filename='images/drunk_cover.jpg') }}"
                         alt="Drunk Cover Art">
                 </div>
-                <p>Release Date: 24 February 2025</p>
-                <a href="https://distrokid.com/hyperfollow/solusnoir/drunk" target="_blank" class="cta-button">Pre-Save
-                    on Spotify</a>
+                <div>
+                    <p class="presavetext">Listen to a preview of "Drunk"</p>
 
-                <div class="audio-snippet">
-                    <p>Listen to a preview of "Drunk"</p>
-                    <audio controls>
+                    <audio controls class="audio-drunk">
                         <source src="{{ url_for('static', filename='snippet/drunk_snippet.wav') }}" type="audio/wav">
                         Your browser does not support the audio element.
                     </audio>
                 </div>
+                <a href="https://distrokid.com/hyperfollow/solusnoir/drunk-2" target="_blank"
+                    class="cta-button">Pre-Save
+                    on Spotify</a>
+
+
+            </div>
+
+            <!-- Drunk acoustic -->
+            <div class="acoustic-section">
+                <h3>Drunk (Acoustic Version)</h3>
+                <p>Listen to the acoustic version of "Drunk"</p>
+                <audio controls>
+                    <source src="{{ url_for('static', filename='snippet/drunk_acoustic.wav') }}" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
             </div>
         </section>
 
         <!-- Latest Release Section -->
         <section class="latest-release">
-            <h2>Latest Spotify Release:</h2>
+            <h2 class="spotify-container">Latest Spotify Release:</h2>
 
             <div class="spotify-container">
                 <!-- Embed latest Spotify track -->
@@ -100,17 +115,36 @@
                 <a href="/portfolio" class="cta-button">View Full Portfolio</a>
             </div>
         </section>
+
+
+
+
+
     </main>
+
+
+
+    <footer class="footer">
+        <p>&copy; 2025 Solus Noir. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/solus.noir" target="_blank" aria-label="Instagram">
+                <img src="{{ url_for('static', filename='icons/instagram.svg') }}" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" target="_blank" aria-label="YouTube">
+                <img src="{{ url_for('static', filename='icons/youtube.svg') }}" alt="YouTube">
+            </a>
+        </div>
+    </footer>
 
     <script>
         // JavaScript for handling scroll-based navbar visibility
         let introSection = document.getElementById("intro");
         let header = document.querySelector(".header");
-        
-        window.addEventListener("scroll", function() {
+
+        window.addEventListener("scroll", function () {
             let introHeight = introSection.clientHeight;
             let scrollPosition = window.scrollY;
-            
+
             if (scrollPosition > introHeight) {
                 header.classList.add("visible");
             } else {
