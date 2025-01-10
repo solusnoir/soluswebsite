@@ -1,25 +1,12 @@
 import os
 import logging
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from dotenv import load_dotenv
 import json
+import datetime
 
-# Initialize logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('app.log'),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
-
-# Load environment variables from .env file for local development
+# Load environment variables from .env file
 load_dotenv()
-
-# Initialize Flask app
-app = Flask(__name__)
 
 # Configuration class
 class Config:
@@ -31,16 +18,28 @@ class Config:
     ALLOWED_EXTENSIONS = {'wav', 'mp3', 'ogg'}
     VISITOR_FILE = 'visitor_count.json'
 
-    FLASK_ENV = os.getenv('FLASK_ENV', 'development')
-    SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')
+    FLASK_ENV = os.getenv('FLASK_ENV', 'production')  # Default to production if not set
+    SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')  # Should be set to a strong key in production
 
+app = Flask(__name__)
 app.config.from_object(Config)
 
-# Create required directories
+# Initialize logging
+logging.basicConfig(
+    level=logging.DEBUG if os.getenv('FLASK_ENV') == 'development' else logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('app.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Create required directories if they don't exist
 os.makedirs(app.config['ACOUSTIC_FOLDER'], exist_ok=True)
 os.makedirs(app.config['BEATS_FOLDER'], exist_ok=True)
 os.makedirs(app.config['DEMO_FOLDER'], exist_ok=True)
-os.makedirs(app.config['LIVE_FOLDER'], exist_ok=True)  # Ensure live folder exists
+os.makedirs(app.config['LIVE_FOLDER'], exist_ok=True)
 
 # Function to get the current visitor count from the visitor_count.json file
 def get_visitor_count():
