@@ -7,10 +7,15 @@
 }
 
 body {
+  font-family: "Montserrat", sans-serif;
   background-color: #000000f6; /* Noir-inspired background */
   color: #e0e0e0;
   line-height: 1.6;
   font-size: 16px;
+}
+
+h1, h2, h3, h4, p, a {
+  font-family: "Montserrat", sans-serif; /* Apply font to headings and paragraphs */
 }
 
 a {
@@ -414,7 +419,7 @@ header nav ul li a:hover {
 /* Audio Player Styling */
 .audio-drunk {
   width: 100%;
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
   margin-top: 16px;
   margin-bottom: 16px;
@@ -425,7 +430,7 @@ header nav ul li a:hover {
 /* Additional Media Query for Mobile Responsiveness */
 @media (max-width: 768px) {
   .audio-drunk {
-    width: 100%; /* Ensure it fills the available space */
+    width: 50%; /* Ensure it fills the available space */
     margin-top: 20px;
     margin-bottom: 20px;
   }
