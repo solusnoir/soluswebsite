@@ -1,14 +1,6 @@
 # Audio Processing
-librosa==0.10.2.post1
 pydub==0.25.1
 soundfile==0.12.1
-
-# Machine Learning & Data Science
-scikit-learn==1.6.0
-torch==2.2.2
-torchaudio==2.2.2
-scipy==1.14.1
-numpy==2.0.2
 
 # Web Development
 Flask==3.0.3
