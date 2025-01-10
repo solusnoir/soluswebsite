@@ -1,12 +1,11 @@
-<!-- songs.html -->
 <section class="songs-section">
     <h3>Our Latest Tracks</h3>
     <ul class="song-list">
         {% for song in songs_info %}
         <li class="song-item">
-            <h4>{{ song.title }}</h4>
+            <h4>{{ song.name }}</h4>  <!-- Display song name -->
             <audio controls>
-                <source src="{{ song.url }}" type="audio/mp3">
+                <source src="{{ song.url }}" type="audio/mp3">  <!-- Correct path -->
                 Your browser does not support the audio element.
             </audio>
         </li>

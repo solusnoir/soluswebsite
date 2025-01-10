@@ -5,16 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solus Noir Portfolio</title>
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
 </head>
 
 <body>
-    <!-- Header Section -->
-    <header class="header-portfolio">
+    <!-- Header Section (Navbar) -->
+    <header class="header-portfolio-good">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
             <nav class="nav">
@@ -27,132 +25,39 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to the Portfolio</h1>
-            <p>Explore Acoustic Demos, Beats, and Other Demos curated by Solus Noir.</p>
-            <div class="hero-buttons">
-                <a href="#acoustic" class="cta-button">Acoustic Demos</a>
-                <a href="#beats" class="cta-button">Beats</a>
-                <a href="#demos" class="cta-button">Demos</a>
-                <a href="#live" class="cta-button">Live</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Demos Section -->
-    <section id="demos" class="audio-section">
-        <h2 class="section-title">Demos</h2>
-        {% if demo_files_info %}
-        <div class="audio-grid">
-            {% for file in demo_files_info %}
-            <div class="audio-card">
-                <h3 class="audio-name">{{ file.name }}</h3>
-                <audio controls>
-                    <source src="{{ file.url }}" type="audio/wav">
-                    Your browser does not support the audio element.
-                </audio>
-                <a href="{{ file.download_url }}" download class="download-btn">
-                    <i class="fa fa-download"></i> Download
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p class="no-files-message">No demo files available.</p>
-        {% endif %}
-    </section>
-
-    <!-- Live Section -->
-    <section id="Live" class="audio-section">
-        <h2 class="section-title">Live</h2>
-        {% if live_files_info %}
-        <div class="audio-grid">
-            {% for file in live_files_info %}
-            <div class="audio-card">
-                <h3 class="audio-name">{{ file.name }}</h3>
-                <audio controls>
-                    <source src="{{ file.url }}" type="audio/wav">
-                    Your browser does not support the audio element.
-                </audio>
-                <a href="{{ file.download_url }}" download class="download-btn">
-                    <i class="fa fa-download"></i> Download
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p class="no-files-message">No acoustic files available.</p>
-        {% endif %}
-    </section>
-
-    <!-- Acoustic Section -->
+    <!-- Portfolio Section -->
     <section id="acoustic" class="audio-section">
         <h2 class="section-title">Acoustic Demos</h2>
-        {% if acoustic_files_info %}
-        <div class="audio-grid">
-            {% for file in acoustic_files_info %}
-            <div class="audio-card">
-                <h3 class="audio-name">{{ file.name }}</h3>
-                <audio controls>
-                    <source src="{{ file.url }}" type="audio/wav">
-                    Your browser does not support the audio element.
-                </audio>
-                <a href="{{ file.download_url }}" download class="download-btn">
-                    <i class="fa fa-download"></i> Download
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p class="no-files-message">No acoustic files available.</p>
-        {% endif %}
+        <ul id="song-list"></ul>
     </section>
 
-
-    <!-- Beats Section -->
     <section id="beats" class="audio-section">
         <h2 class="section-title">Beats</h2>
-        {% if beats_files_info %}
-        <div class="audio-grid">
-            {% for file in beats_files_info %}
-            <div class="audio-card">
-                <h3 class="audio-name">{{ file.name }}</h3>
-                <audio controls>
-                    <source src="{{ file.url }}" type="audio/wav">
-                    Your browser does not support the audio element.
-                </audio>
-                <a href="{{ file.download_url }}" download class="download-btn">
-                    <i class="fa fa-download"></i> Download
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <p class="no-files-message">No beats files available.</p>
-        {% endif %}
+        <!-- Other content goes here -->
     </section>
 
+    <section id="demos" class="audio-section">
+        <h2 class="section-title">Demos</h2>
+        <!-- Other content goes here -->
+    </section>
 
+    <section id="live" class="audio-section">
+        <h2 class="section-title">Live Performances</h2>
+        <!-- Other content goes here -->
+    </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 Solus Noir. All rights reserved.</p>
-    </footer>
+    <section id="songs" class="audio-section">
+        <h2 class="section-title">Songs</h2>
+        <!-- Other content goes here -->
+    </section>
 
-
-
-    <script>
-        // Update audio player with the selected song's URL
-        function updatePlayer(audioUrl) {
-            const audioPlayer = document.getElementById('audio-player');
-            const audioSource = document.getElementById('audio-source');
-            audioSource.src = audioUrl;
-            audioPlayer.load(); // Reload the player with the new audio file
-            audioPlayer.play(); // Start playing the audio
-        }
-    </script>
+    <!-- Add this closing script at the bottom to make sure it's loaded properly -->
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
 </body>
 
+
+
+
+
 </html>
+

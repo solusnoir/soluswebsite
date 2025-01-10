@@ -45,14 +45,7 @@
                     <img class="presaveimage" src="{{ url_for('static', filename='images/drunk_cover.jpg') }}"
                         alt="Drunk Cover Art">
                 </div>
-                <div>
-                    <p class="presavetext">Listen to a preview of "Drunk"</p>
 
-                    <audio controls class="audio-drunk">
-                        <source src="{{ url_for('static', filename='snippet/drunk_snippet.wav') }}" type="audio/wav">
-                        Your browser does not support the audio element.
-                    </audio>
-                </div>
                 <a href="https://distrokid.com/hyperfollow/solusnoir/drunk-2" target="_blank"
                     class="cta-button">Pre-Save
                     on Spotify</a>
@@ -61,34 +54,21 @@
             </div>
 
             <!-- Drunk acoustic -->
-            <div class="acoustic-section">
-                <h3>Drunk (Acoustic Version)</h3>
-                <p>Listen to the acoustic version of "Drunk"</p>
-                <audio controls>
-                    <source src="{{ url_for('static', filename='snippet/drunk_acoustic.wav') }}" type="audio/wav">
+            <div>
+                <p class="presavetext">Listen to a preview of "Drunk"</p>
+
+                <audio controls class="audio-drunk">
+                    <source src="{{ url_for('static', filename='snippet/Solus Noir - Drunk (snippet).wav') }}"
+                        type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
+
             </div>
         </section>
 
 
-        <!-- Include songs.html content here -->
         {% include 'songs.html' %}
-<!-- Songs Section -->
-<section class="songs-section">
-    <h3>Our Latest Tracks</h3>
-    <ul class="song-list">
-        {% for song in songs_info %}
-        <li class="song-item">
-            <h4>{{ song.title }}</h4>
-            <audio controls>
-                <source src="{{ song.url }}" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </li>
-        {% endfor %}
-    </ul>
-</section>
+
 
 
 
