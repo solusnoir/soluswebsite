@@ -26,8 +26,36 @@
             </nav>
         </div>
     </header>
-    
-    
+
+    <!-- Hero Section for Upcoming Release -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2>Upcoming Release: Drunk</h2>
+            <p>Release Date: 24 February 2025</p>
+
+            <div class="cover-art">
+                <img class="presaveimage" src="{{ url_for('static', filename='images/drunk_cover.jpg') }}"
+                    alt="Drunk Cover Art">
+            </div>
+
+            <a href="https://distrokid.com/hyperfollow/solusnoir/drunk-2" target="_blank" class="cta-button">Pre-Save
+                on Spotify</a>
+
+
+        </div>
+
+        <!-- preview section -->
+        <div>
+            <p class="presavetext">Listen to a preview of "Drunk"</p>
+
+            <audio controls class="audio-drunk">
+                <source src="{{ url_for('static', filename='snippet/Solus Noir - Drunk (snippet).wav') }}"
+                    type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+    </section>
 
     <!-- Acoustic Demos Section -->
     <section id="acoustic" class="audio-section">
@@ -128,6 +156,27 @@
             {% endif %}
         </div>
     </section>
+
+    <!-- Acoustic Demos Section -->
+    <section id="acoustic" class="audio-section">
+        <h2 class="section-title">Acoustic Demos</h2>
+        <div class="song-list">
+            {% if acoustic_files_info %}
+            {% for song in acoustic_files_info %}
+            <div class="song-card">
+                <audio controls>
+                    <source src="{{ song.url }}" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+                <a href="{{ song.download_url }}" target="_blank" class="download-link">Download {{ song.name }}</a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No acoustic demos available.</p>
+            {% endif %}
+        </div>
+    </section>
+
 
     <!-- Add this closing script at the bottom to make sure it's loaded properly -->
     <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
