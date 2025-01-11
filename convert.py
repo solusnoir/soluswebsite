@@ -7,7 +7,10 @@ import traceback
 import uuid
 
 # Set ffmpeg path if it's not detected automatically (adjust as needed)
-FFMPEG_PATH = "/opt/homebrew/bin/ffmpeg"  # Path to ffmpeg on your system
+FFMPEG_PATH = "/opt/homebrew/bin/ffmpeg"  # Path to ffmpeg on your local system
+
+# Check if we're on Heroku, and if so, let the buildpack handle ffmpeg
+FFMPEG_EXEC = FFMPEG_PATH if os.path.exists(FFMPEG_PATH) else "ffmpeg"
 
 app = Flask(__name__)
 
@@ -40,10 +43,10 @@ def convert_audio():
 
             # Convert the audio using ffmpeg
             try:
-                print(f"Converting {temp_file.name} to {output_file_path} using ffmpeg")
+                print(f"Converting {temp_file.name} to {output_file_path} using {FFMPEG_EXEC}")
                 if format == 'wav':
                     command = [
-                        FFMPEG_PATH,
+                        FFMPEG_EXEC,
                         '-y',  # Automatically overwrite if the file exists
                         '-i', temp_file.name,
                         '-acodec', 'pcm_s16le',  # WAV codec
@@ -53,7 +56,7 @@ def convert_audio():
                     ]
                 elif format == 'm4a':
                     command = [
-                        FFMPEG_PATH, 
+                        FFMPEG_EXEC, 
                         '-y', 
                         '-i', temp_file.name, 
                         '-acodec', 'aac',  # Use 'aac' for m4a
@@ -62,7 +65,7 @@ def convert_audio():
                     ]
                 else:  # For mp3
                     command = [
-                        FFMPEG_PATH, 
+                        FFMPEG_EXEC, 
                         '-y', 
                         '-i', temp_file.name, 
                         '-acodec', 'libmp3lame',  # Use 'libmp3lame' for mp3
