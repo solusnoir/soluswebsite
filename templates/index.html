@@ -16,10 +16,12 @@
     </section>
 
     <!-- Header -->
+  
+
     <header class="header">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
-            <button class="menu-toggle">☰</button> <!-- Hamburger menu icon -->
+            <button class="menu-toggle" aria-label="Menu Toggle">☰</button> <!-- Hamburger menu icon -->
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="/" class="nav-link">Home</a></li>
@@ -28,13 +30,16 @@
                     <li class="dropdown">
                         <a href="#" class="nav-link">Tools</a>
                         <ul class="dropdown-menu">
-                            <li><a href="/convert" class="nav-link">Audio Conversion</a></li> <!-- Updated to point to the conversion page -->
+                            <li><a href="/convert" class="nav-link">Audio Conversion</a></li>
                         </ul>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
+
+
+
 
     <!-- Visitor Counter Section -->
     <section class="visitor-counter">
@@ -116,7 +121,7 @@
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 
 </html>

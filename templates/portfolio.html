@@ -26,15 +26,14 @@
                     <li><a href="/" class="nav-link">Home</a></li>
                     <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
                     <li><a href="/store" class="nav-link">Store</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/convert" class="nav-link">Audio Conversion</a></li> <!-- Updated to point to the conversion page -->
+                        </ul>
+                    </li>
                 </ul>
             </nav>
-        </div>
-        <div class="side-nav">
-            <ul class="nav-links">
-                <li><a href="/" class="nav-link">Home</a></li>
-                <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="/store" class="nav-link">Store</a></li>
-            </ul>
         </div>
     </header>
 
@@ -174,7 +173,7 @@
 
 
     <!-- Add this closing script at the bottom to make sure it's loaded properly -->
-    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 
 </html>
