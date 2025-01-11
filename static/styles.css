@@ -1,4 +1,4 @@
-/* Reset & Global Styles */
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,196 +7,127 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
-  background-color: #000000f6; /* Noir-inspired background */
+  background-color: #000000f6;
   color: #e0e0e0;
   line-height: 1.6;
   font-size: 16px;
 }
 
-h1, h2, h3, h4, p, a {
-  font-family: "Montserrat", sans-serif; /* Apply font to headings and paragraphs */
-}
-
-a {
-  color: #ffffff; /* Neutral white for links */
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
-}
-
-a:hover {
-  color: #00bfff; /* Vibrant blue on hover */
-  text-decoration: underline;
-}
-
 /* Intro Section */
 .intro-section {
+  height: 100vh; /* Ensure it takes full viewport height */
   display: flex;
-  align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  background: #000;
-  color: #fff;
-  font-size: 3rem;
-  font-weight: 600;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  overflow: hidden;  /* Prevents overflow when the title is moving */
+  align-items: center;
+  background-color: #000;
 }
 
-/* Initial state of the title before animation */
 #intro-title {
-  opacity: 0; /* Title starts hidden */
-  transform: translateY(100px); /* Start below its final position */
-  animation: moveUp 1.5s ease-out forwards; /* Animation for the title */
+  font-size: 4rem;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 600;
 }
-
-/* Keyframes for the move up animation */
-@keyframes moveUp {
-  10% {
-    opacity: 0;
-    transform: translateY(40px);
-    /*Startbelow*/:;
-    -webkit-transform: translateY(40px);
-    -moz-transform: translateY(40px);
-    -ms-transform: translateY(40px);
-    -o-transform: translateY(40px);
-}
-  100% {
-    opacity: 5;
-    transform: translateY(0); /* End at its normal position */
-  }
-}
-
-
-
-
 
 /* Header */
 .header {
   position: fixed;
-  top: -100px; /* Initially hidden */
+  top: -120px; /* Initially hidden off-screen */
   left: 0;
   width: 100%;
-  background: #121212;
+  background: #000;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  z-index: 3;
-  overflow: hidden;
-  transition: top 0.3s ease-in-out;
-}
-
-
-
-
-
-.header-portfolio-good {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #000;
-  padding: 20px;
   z-index: 10;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: top 0.3s ease; /* Smoother transition */
 }
-
-
-.header-portfolio {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #000;
-  padding: 20px;
-  z-index: 10;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-
 
 .header.visible {
-  top: 0; /* Visible when scrolling down */
+  top: 0; /* Slide the navbar in */
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.visitor-counter {
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-  background: #0d0d0d;
-  margin: 35px auto;
-  border-radius: 30px;
-  max-width: 500px;
-}
-
-/* Main Title */
-#intro-title,
-#main-title {
-  font-family: "Montserrat", sans-serif;
-  color: #fff;
-}
-
-header nav ul {
-  display: flex;
-  list-style: none;
   gap: 20px;
 }
 
-header nav ul li {
-  position: relative;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-header nav ul li a {
-  font-size: 1rem;
+.nav-link {
   color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
   padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-header nav ul li a:hover {
+.nav-link:hover {
+  background-color: #ffffff;
   color: #000;
-  background-color: #ffffff; /* White on hover for contrast */
+  border-radius: 5px;
+}
+
+/* Visitor Counter Section */
+.visitor-counter {
+  text-align: center;
+  padding: 30px 20px;
+  background-color: #111;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin: 20px auto;
+  max-width: 600px;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.visitor-counter:hover {
+  transform: scale(1.05);
+}
+
+.visitor-counter h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00bfff; /* Standout blue color */
+  margin-bottom: 15px;
+}
+
+.visitor-counter p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  font-weight: 400;
 }
 
 /* Hero Section */
 .hero-section {
   text-align: center;
-  padding: 20px 20px;
-}
-
-.hero-section h2 {
-  font-size: 2.4rem;
-  color: #ffffff;
-  margin-bottom: 15px;
-}
-
-.hero-section p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-
-
-/* Hero Section Styling */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 60vh;
-  background: url('/static/images/hero-bg.jpg') no-repeat center center/cover; /* Replace with your hero image */
-  color: white;
+  padding: 40px 20px;
+  background-color: #111;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 .hero-content {
@@ -205,45 +136,27 @@ header nav ul li a:hover {
   background: rgba(19, 19, 19, 0.6);
   border-radius: 19px;
   margin: 0 auto;
-  /*Thisensuresthehero-contentiscentered*/:;
-  -webkit-border-radius: 19px;
-  -moz-border-radius: 19px;
-  -ms-border-radius: 19px;
-  -o-border-radius: 19px;
 }
 
-
-
-
 .presaveimage {
-  max-width: 85%;
+  max-width: 100%;
   height: auto;
-  margin: 10px ;
+  margin: 20px 0;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(67, 67, 67, 0.5);
 }
 
-.cta-button {
-  display: inline-block;
-  padding: 20px 40px;
-  background: #5d2e2e;
-  margin-bottom: 30px;
-  margin-top: 20;
-  color: #ffffff;
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
-  text-decoration: none;
+/* Portfolio Section */
+.portfolio-preview {
+  padding: 50px 20px;
+  text-align: center;
+  background: #1a1a1a;
+  border-radius: 10px;
+  margin: 40px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  max-width: 600px;
 }
 
-.cta-button:hover {
-  background: #171717;
-  color: #ffffff;
-  transform: scale(1.05);
-}
-
-/* Shared Section Styles */
 .section-title {
   font-size: 2rem;
   color: #ffffff;
@@ -259,189 +172,210 @@ header nav ul li a:hover {
   text-align: center;
 }
 
-/* Portfolio Preview Section */
-.portfolio-preview {
+/* Audio Section */
+.audio-section {
   padding: 50px 20px;
+  background: #222;
+  color: #e0e0e0;
   text-align: center;
-  background: #1a1a1a;
+  margin-top: 20px;
   border-radius: 10px;
-  margin: 40px auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  max-width: 600px;
+}
+
+.audio-section h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.song-card {
+  background-color: #333;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
+}
+
+.song-card:hover {
+  background-color: #444;
+}
+
+.download-link {
+  color: #00bfff;
+  font-size: 1.1rem;
+  text-decoration: none;
+  margin-top: 10px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.download-link:hover {
+  color: #ffffff;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #111;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.social-icons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+  color: #00bfff;
+}
+
+/* Upcoming Release Section - Added Spacing */
+.hero-section h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  background-color: #00bfff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0088cc;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: center;
+  .visitor-counter {
+    max-width: 100%;
+    padding: 30px;
+    box-shadow: none;
   }
 
   .header {
     top: -120px;
   }
 
-  header nav ul {
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-toggle.open {
+    transform: rotate(90deg);
+    color: #00bfff;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-links {
+    display: none;
     flex-direction: column;
     gap: 15px;
+    background-color: #000;
+    width: 100%;
+    padding: 20px;
   }
 
-  .spotify-container iframe {
-    width: 70%;
+  .nav-links.active {
+    display: flex;
   }
 
-  .hero-section h2 {
-    font-size: 2rem;
+  .nav {
+    display: none;
+  }
+
+  .presaveimage {
+    max-width: 85%;
   }
 
   .cta-button {
     padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .footer {
     font-size: 0.9rem;
   }
-
-  .portfolio-preview {
-    padding: 30px 15px;
-  }
-
-  .section-title {
-    font-size: 3rem;
-  }
-
-  .visitor-counter {
-    padding: 45px 15px;
-  }
-
-
 }
 
-/* Section Styling */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+/* Additional improvements */
 .audio-section {
-  padding: 60px 30px;
-  background: #787878;
-  color: #333;
-}
-
-.audio-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.audio-card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.download-btn {
-  display: inline-block;
-  margin-top: 10px;
-  color: #007BFF;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.download-btn:hover {
-  color: #0056b3;
-}
-
-
-.coming-soon {
-  font-size: 1.5rem;
-  color: #333;
-  margin-top: 420px;
+  padding: 50px 20px;
+  background: #222;
+  color: #e0e0e0;
   text-align: center;
-  content: flex;
-}
-
-
-/* Acoustic Section */
-.acoustic-section {
-  margin-top: 20000000px; /* You can increase this value to move it further down */
-  background: rgba(255, 255, 255, 0);
-  padding: 20px;
+  margin-top: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 600px;
+}
+
+#song-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-bottom: 150px;
+  gap: 15px;
+  text-align: left;
 }
 
-
-.acoustic-section h3 {
-  font-size: 1.8rem;
-  color: #ffffff;
-  margin-bottom: 10px;
+.song-card {
+  background-color: #333;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: background 0.3s ease;
 }
 
-
-
-.acoustic-section p {
-  font-size: 1rem;
-  margin-bottom: 10px;
+.song-card:hover {
+  background-color: #444;
 }
 
-.acoustic-section p {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-
-.spotify-container {
-  width: 70%;
-  justify-content: center;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.spotify-container iframe {
-  width: 70%;
-  justify-content: center;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px; /* Spacing specific to iframe */
-}
-
-/* Audio Player Styling */
-.audio-drunk {
-  width: 100%;
-  max-width: 50%;
-  height: auto;
-  margin-top: 16px;
-  margin-bottom: 16px;
-  border-radius: 15px;
-}
-
-
-/* Additional Media Query for Mobile Responsiveness */
-@media (max-width: 768px) {
-  .audio-drunk {
-    width: 50%; /* Ensure it fills the available space */
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-}
-
-
-.presavetext {
+#song-list {
+  color: #e0e0e0;
   font-size: 1.2rem;
-  color: #ffffff;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  text-align: center;
 }
 
-
+#song-list:empty::before {
+  content: "No songs available.";
+  color: #ff4040; /* Red color for error message */
+  font-size: 1.5rem;
+  font-weight: bold;
+}

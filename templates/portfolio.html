@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solus Noir Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <!-- Font Awesome Icons -->
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- Header Section (Navbar) -->
-    <header class="header-portfolio">
+    <header class="header">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
+            <button class="menu-toggle">☰</button> <!-- Hamburger menu icon -->
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="/" class="nav-link">Home</a></li>
@@ -25,6 +26,8 @@
             </nav>
         </div>
     </header>
+    
+    
 
     <!-- Acoustic Demos Section -->
     <section id="acoustic" class="audio-section">
