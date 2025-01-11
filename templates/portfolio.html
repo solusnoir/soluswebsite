@@ -12,8 +12,12 @@
 </head>
 
 <body>
-    <!-- Header Section (Navbar) -->
-    <header class="header">
+
+
+
+
+     <!-- header -->
+     <header class="header">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
             <button class="menu-toggle">☰</button> <!-- Hamburger menu icon -->
@@ -25,7 +29,18 @@
                 </ul>
             </nav>
         </div>
+        <div class="side-nav">
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">Home</a></li>
+                <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="/store" class="nav-link">Store</a></li>
+            </ul>
+        </div>
     </header>
+
+
+
+
 
     <!-- Hero Section for Upcoming Release -->
     <section class="hero-section">
@@ -55,26 +70,6 @@
             </audio>
         </div>
 
-    </section>
-
-    <!-- Acoustic Demos Section -->
-    <section id="acoustic" class="audio-section">
-        <h2 class="section-title">Acoustic Demos</h2>
-        <div class="song-list">
-            {% if acoustic_files_info %}
-            {% for song in acoustic_files_info %}
-            <div class="song-card">
-                <audio controls>
-                    <source src="{{ song.url }}" type="audio/wav">
-                    Your browser does not support the audio element.
-                </audio>
-                <a href="{{ song.download_url }}" target="_blank" class="download-link">Download {{ song.name }}</a>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p>No acoustic demos available.</p>
-            {% endif %}
-        </div>
     </section>
 
     <!-- Beats Section -->
