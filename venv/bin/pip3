@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/Users/arnostyns/Desktop/solus website/venv/bin/python3" "$0" "$@"
-' '''
+#!/Users/arnostyns/Desktop/solus_website/venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

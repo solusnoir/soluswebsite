@@ -1,13 +1,14 @@
 # Audio Processing
 pydub==0.25.1
 soundfile==0.12.1
+ffmpeg-python==0.2.0
 
 # Web Development
-Flask==3.0.3
+Flask==2.3.3
 gunicorn==23.0.0
 
 # Utility Libraries
 requests==2.28.1
 python-dotenv==1.0.1
 tqdm==4.65.1
-Werkzeug==3.0.6
+Werkzeug>=2.3.7  # Update to a compatible version
