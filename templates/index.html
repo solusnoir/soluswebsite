@@ -15,7 +15,7 @@
         <h1 id="intro-title">SOLUS NOIR</h1>
     </section>
 
-    <!-- header -->
+    <!-- Header -->
     <header class="header">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
@@ -25,15 +25,14 @@
                     <li><a href="/" class="nav-link">Home</a></li>
                     <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
                     <li><a href="/store" class="nav-link">Store</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/convert" class="nav-link">Audio Conversion</a></li> <!-- Updated to point to the conversion page -->
+                        </ul>
+                    </li>
                 </ul>
             </nav>
-        </div>
-        <div class="side-nav">
-            <ul class="nav-links">
-                <li><a href="/" class="nav-link">Home</a></li>
-                <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
-                <li><a href="/store" class="nav-link">Store</a></li>
-            </ul>
         </div>
     </header>
 
@@ -48,18 +47,15 @@
             <div class="hero-content">
                 <h2>Upcoming Release: Drunk</h2>
                 <p>Release Date: 24 February 2025</p>
-
                 <div class="cover-art">
                     <img class="presaveimage" src="{{ url_for('static', filename='images/drunk_cover.jpg') }}" alt="Drunk Cover Art">
                 </div>
-
                 <a href="https://distrokid.com/hyperfollow/solusnoir/drunk-2" target="_blank" class="cta-button">Pre-Save on Spotify</a>
             </div>
 
-            <!-- preview section -->
+            <!-- Preview Section -->
             <div>
                 <p class="presavetext">Listen to a preview of "Drunk"</p>
-
                 <audio controls class="audio-drunk">
                     <source src="{{ url_for('static', filename='snippet/Solus Noir - Drunk (snippet).wav') }}" type="audio/wav">
                     Your browser does not support the audio element.
@@ -72,9 +68,7 @@
         <!-- Latest Release Section -->
         <section class="latest-release">
             <h2 class="spotify-container">Latest Spotify Release:</h2>
-
             <div class="spotify-container">
-                <!-- Embed latest Spotify track -->
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1pymWT6fxhVOjzCjacufk2?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </section>
@@ -82,7 +76,6 @@
         <!-- Portfolio Preview Section -->
         <section class="portfolio-preview">
             <h2 class="section-title">Explore My Latest Audio Demos</h2>
-
             <div class="audio-preview-container">
                 <h3 class="demos-title">Audio Demos</h3>
                 {% if demo_files_info %}
@@ -115,17 +108,15 @@
         <p>&copy; 2025 Solus Noir. All Rights Reserved.</p>
         <div class="social-icons">
             <a href="https://www.instagram.com/solus.noir" target="_blank" aria-label="Instagram">
-                <p>youtube</p>
+                <p>instagram</p>
             </a>
             <a href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" target="_blank" aria-label="YouTube">
-                <p>instagram</p>
+                <p>youtube</p>
             </a>
         </div>
     </footer>
 
-    <!-- Corrected script reference -->
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-
 </body>
 
 </html>

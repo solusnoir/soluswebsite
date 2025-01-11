@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - Solus Noir</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1>Tools Page</h1>
+</header>
+
+<main>
+    <section class="tools-intro">
+        <h2>Welcome to the Tools Page!</h2>
+        <p>This is where you can access various tools related to the Solus Noir portfolio.</p>
+        <!-- Add your tools or functionalities here -->
+    </section>
+
+    <!-- Example of a tool form (e.g., for converting audio files) -->
+    <section class="audio-converter-tool">
+        <h3>Audio File Converter</h3>
+        <form action="/convert_audio" method="POST" enctype="multipart/form-data">
+            <label for="audioFile">Choose an audio file:</label>
+            <input type="file" name="audioFile" id="audioFile" required>
+            
+            <label for="format">Choose output format:</label>
+            <select name="format" id="format" required>
+                <option value="mp3">MP3</option>
+                <option value="m4a">M4A</option>
+            </select>
+
+            <button type="submit">Convert Audio</button>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>
