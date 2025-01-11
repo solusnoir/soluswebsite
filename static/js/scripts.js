@@ -37,18 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('open');
-        sideNav.classList.toggle('active');
     });
 
     // Close Menu on Outside Click
     document.addEventListener('click', (event) => {
         if (
             !menuToggle.contains(event.target) && // Click is not on the toggle button
-            !sideNav.contains(event.target) // Click is not inside the side navigation
+            !navLinks.contains(event.target) // Click is not inside the navigation links
         ) {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('open');
-            sideNav.classList.remove('active');
         }
     });
 
@@ -57,7 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('open');
-            sideNav.classList.remove('active');
+        });
+    });
+
+    // Ensure dropdown menu works on smaller screens
+    const dropdowns = document.querySelectorAll('.dropdown > .nav-link');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            const dropdownMenu = dropdown.nextElementSibling;
+            if (dropdownMenu) {
+                dropdownMenu.classList.toggle('active');
+            }
         });
     });
 });
