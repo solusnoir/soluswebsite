@@ -3,6 +3,7 @@ import os
 import logging
 from dotenv import load_dotenv
 from convert import convert_audio  # Import the convert_audio function from convert.py
+from find_key import find_key  # Import the find_key function for key and BPM detection
 
 # Load environment variables from .env file
 load_dotenv()
@@ -14,19 +15,20 @@ class Config:
     BEATS_FOLDER = os.path.join(BASE_DIR, 'static', 'beats')
     DEMO_FOLDER = os.path.join(BASE_DIR, 'static', 'demos')
     LIVE_FOLDER = os.path.join(BASE_DIR, 'static', 'live')
-    SONGS_FOLDER = os.path.join(BASE_DIR, 'static', 'songs')  # Add the songs folder
-    ALLOWED_EXTENSIONS = {'wav', 'mp3', 'ogg'}
+    SONGS_FOLDER = os.path.join(BASE_DIR, 'static', 'songs')
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
+    ALLOWED_EXTENSIONS = {'wav', 'mp3', 'ogg', 'm4a'}
     VISITOR_FILE = os.path.join(BASE_DIR, 'visitor_count.json')
 
-    FLASK_ENV = os.getenv('FLASK_ENV', 'production')  # Default to production if not set
-    SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')  # Should be set to a strong key in production
+    FLASK_ENV = os.getenv('FLASK_ENV', 'production')
+    SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 # Initialize logging
 logging.basicConfig(
-    level=logging.DEBUG if os.getenv('FLASK_ENV') == 'development' else logging.INFO,
+    level=logging.DEBUG if app.config['FLASK_ENV'] == 'development' else logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler('app.log'),
@@ -40,13 +42,14 @@ os.makedirs(app.config['ACOUSTIC_FOLDER'], exist_ok=True)
 os.makedirs(app.config['BEATS_FOLDER'], exist_ok=True)
 os.makedirs(app.config['DEMO_FOLDER'], exist_ok=True)
 os.makedirs(app.config['LIVE_FOLDER'], exist_ok=True)
-os.makedirs(app.config['SONGS_FOLDER'], exist_ok=True)  # Create the songs folder
+os.makedirs(app.config['SONGS_FOLDER'], exist_ok=True)
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Helper function to list audio files
 def get_audio_files_info(folder):
     audio_files = []
     for filename in os.listdir(folder):
-        if filename.split('.')[-1] in Config.ALLOWED_EXTENSIONS:
+        if filename.split('.')[-1].lower() in Config.ALLOWED_EXTENSIONS:
             audio_files.append({
                 'name': filename,
                 'url': url_for('static', filename=os.path.join(folder.split('/')[-1], filename)),
@@ -76,7 +79,7 @@ def portfolio():
 
 @app.route('/store')
 def store():
-    return render_template('store.html')  # Render the store.html template
+    return render_template('store.html')
 
 @app.route('/convert')
 def convert_page():
@@ -84,7 +87,28 @@ def convert_page():
 
 @app.route('/convert', methods=['POST'])
 def convert():
-    return convert_audio()  # Just call convert_audio directly, Flask handles the request object
+    return convert_audio()
+
+@app.route('/find-key')
+def find_key_page():
+    return render_template('find-key.html')
+
+@app.route('/find-key', methods=['POST'])
+def find_key_route():
+    if 'audio' not in request.files:
+        return jsonify({'success': False, 'message': 'No file uploaded'}), 400
+
+    file = request.files['audio']
+    audio_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+    file.save(audio_path)
+
+    try:
+        # Detect key and BPM using the find_key function
+        detection_result = find_key(audio_path)
+        return jsonify({'success': True, **detection_result})
+    except Exception as e:
+        logger.error(f"Error during key/BPM detection: {e}")
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 @app.route('/download/<folder>/<filename>')
 def download_file(folder, filename):
@@ -92,4 +116,4 @@ def download_file(folder, filename):
     return send_from_directory(folder_path, filename, as_attachment=True)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)  # Use port 5001 to avoid conflict with default Flask port
+    app.run(debug=True, port=5001)
