@@ -8,9 +8,27 @@
 </head>
 <body>
 
-<header class="header">
-    <h1>Tools Page</h1>
-</header>
+    <header class="header">
+        <div class="nav-container">
+            <h1 id="main-title">SOLUS NOIR</h1>
+            <button class="menu-toggle" aria-label="Menu Toggle">☰</button> <!-- Hamburger menu icon -->
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="/store" class="nav-link">Store</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/convert" class="nav-link">Audio Conversion</a></li>
+                            <li><a href="/find-key" class="nav-link">Find Key</a></li> <!-- Added link for Find Key -->
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
 
 <main>
     <section class="tools-intro">

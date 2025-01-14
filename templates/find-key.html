@@ -11,81 +11,15 @@
     <style>
         /* Global Styles */
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
             font-family: "Montserrat", sans-serif;
         }
 
         body {
-            background-color: #000000f6;
-            color: #e0e0e0;
-            line-height: 1.6;
-            font-size: 16px;
-            margin: 0;
             padding: 50px;
         }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            z-index: 10;
-            padding: 10px 0;
-        }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-logo {
-            font-size: 1.5rem;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .menu-toggle {
-            display: block;
-            font-size: 2rem;
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
-            padding: 5px;
-            margin-right: 50px;
-            z-index: 11;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-            margin: 0;
-        }
-
-        .nav-link {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-size: 1rem;
-            padding: 10px 15px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background-color: #fff;
-            color: #000;
-            border-radius: 5px;
-        }
 
         /* Container Styles */
         .container {
@@ -100,7 +34,6 @@
         }
 
         h1 {
-            font-size: 1.5rem;
             margin-bottom: 20px;
         }
 
@@ -162,7 +95,7 @@
     <header class="header">
         <div class="nav-container">
             <h1 id="main-title">SOLUS NOIR</h1>
-            <button class="menu-toggle" aria-label="Menu Toggle">☰</button>
+            <button class="menu-toggle" aria-label="Menu Toggle">☰</button> <!-- Hamburger menu icon -->
             <nav class="nav">
                 <ul class="nav-links">
                     <li><a href="/" class="nav-link">Home</a></li>
@@ -172,13 +105,14 @@
                         <a href="#" class="nav-link">Tools</a>
                         <ul class="dropdown-menu">
                             <li><a href="/convert" class="nav-link">Audio Conversion</a></li>
-                            <li><a href="/find-key" class="nav-link">Find Key</a></li>
+                            <li><a href="/find-key" class="nav-link">Find Key</a></li> <!-- Added link for Find Key -->
                         </ul>
                     </li>
                 </ul>
             </nav>
         </div>
     </header>
+    
 
     <!-- Main content container -->
     <div class="container">
@@ -246,6 +180,7 @@
             });
         });
     </script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 
 </body>
 
