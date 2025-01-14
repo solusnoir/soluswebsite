@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solus Noir Portfolio</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="http://solusnoir.com/static/scripts.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <h1 id="main-title">SOLUS NOIR</h1>
+            <button class="menu-toggle">☰</button>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="store" class="nav-link">Store</a></li>
+                    <li class="dropdown">
+                        <a href="portfolio#" class="nav-link">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="convert" class="nav-link">Audio Conversion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section for Upcoming Release -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h2>Upcoming Release: Drunk</h2>
+            <p>Release Date: 24 February 2025</p>
+
+            <div class="cover-art">
+                <img class="presaveimage" src="static/images/drunk_cover.jpg" alt="Drunk Cover Art">
+            </div>
+
+            <a href="https://distrokid.com/hyperfollow/solusnoir/drunk-2" target="_blank" class="cta-button">Pre-Save on Spotify</a>
+        </div>
+
+        <!-- Preview Section for "Drunk" -->
+        <div>
+            <p class="presavetext">Listen to a preview of "Drunk"</p>
+            <audio controls class="audio-drunk">
+                <source src="static/snippet/Solus%20Noir%20-%20Drunk%20(snippet).wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </section>
+
+    <!-- Audio Section - Below Upcoming Release -->
+    <section class="audio-section">
+        <h2 class="section-title">Audio Files</h2>
+
+        <!-- Beats Section -->
+        <div id="beats" class="song-list">
+            <h3>Beats</h3>
+            
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/beats/rnb%20triphop.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/beats/rnb%20triphop.wav" target="_blank" class="download-link">Download rnb triphop.wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/beats/Solus%20beat%201.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/beats/Solus%20beat%201.wav" target="_blank" class="download-link">Download Solus beat 1.wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/beats/triphop%20techno%20snippet.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/beats/triphop%20techno%20snippet.wav" target="_blank" class="download-link">Download triphop techno snippet.wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/beats/solus%20beat%202.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/beats/solus%20beat%202.wav" target="_blank" class="download-link">Download solus beat 2.wav</a>
+                </div>
+                
+            
+        </div>
+
+        <!-- Demos Section -->
+        <div id="demos" class="song-list">
+            <h3>Demos</h3>
+            
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/demos/Tell%20what%20you%20want%202%20be.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/demos/Tell%20what%20you%20want%202%20be.wav" target="_blank" class="download-link">Download Tell what you want 2 be.wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/demos/flawless.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/demos/flawless.wav" target="_blank" class="download-link">Download flawless.wav</a>
+                </div>
+                
+            
+        </div>
+
+        <!-- Live Performances Section -->
+        <div id="live" class="song-list">
+            <h3>Live Performances</h3>
+            
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/live/right%20here.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/live/right%20here.wav" target="_blank" class="download-link">Download right here.wav</a>
+                </div>
+                
+            
+        </div>
+
+        <!-- Songs Section -->
+        <div id="songs" class="song-list">
+            <h3>Songs</h3>
+            
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/songs/right%20here.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/songs/right%20here.wav" target="_blank" class="download-link">Download right here.wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/songs/Solus%20Noir%20-%20Drunk%20(snippet).wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/songs/Solus%20Noir%20-%20Drunk%20(snippet).wav" target="_blank" class="download-link">Download Solus Noir - Drunk (snippet).wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/songs/flawless.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/songs/flawless.wav" target="_blank" class="download-link">Download flawless.wav</a>
+                </div>
+                
+            
+        </div>
+
+        <!-- Acoustic Demos Section -->
+        <div id="acoustic" class="song-list">
+            <h3>Acoustic Demos</h3>
+            
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/acoustic/acoustic%20cover%20-%20coming%20down.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/acoustic/acoustic%20cover%20-%20coming%20down.wav" target="_blank" class="download-link">Download acoustic cover - coming down.wav</a>
+                </div>
+                
+                <div class="song-card">
+                    <audio controls>
+                        <source src="static/acoustic/Drunk%20acoustic%20full%20first%20verse.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <a href="http://solusnoir.com/download/acoustic/Drunk%20acoustic%20full%20first%20verse.wav" target="_blank" class="download-link">Download Drunk acoustic full first verse.wav</a>
+                </div>
+                
+            
+        </div>
+    </section>
+
+    <!-- Closing Script -->
+    <script src="static/js/scripts.js"></script>
+</body>
+
+</html>

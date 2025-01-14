@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solus Noir Portfolio</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+    <!-- Intro Section -->
+    <section class="intro-section" id="intro">
+        <h1 id="intro-title">SOLUS NOIR</h1>
+    </section>
+
+    <!-- Header -->
+  
+
+    <header class="header">
+        <div class="nav-container">
+            <h1 id="main-title">SOLUS NOIR</h1>
+            <button class="menu-toggle" aria-label="Menu Toggle">☰</button> <!-- Hamburger menu icon -->
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="store" class="nav-link">Store</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#" class="nav-link">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="convert" class="nav-link">Audio Conversion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+
+    <!-- Visitor Counter Section -->
+    <section class="visitor-counter">
+        <h2>Visitors since January 2025: </h2>
+    </section>
+
+    <main>
+        <!-- Hero Section for Upcoming Release -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Upcoming Release: Drunk</h2>
+                <p>Release Date: 24 February 2025</p>
+                <div class="cover-art">
+                    <img class="presaveimage" src="static/images/drunk_cover.jpg" alt="Drunk Cover Art">
+                </div>
+                <a href="https://distrokid.com/hyperfollow/solusnoir/drunk-2" target="_blank" class="cta-button">Pre-Save on Spotify</a>
+            </div>
+
+            <!-- Preview Section -->
+            <div>
+                <p class="presavetext">Listen to a preview of "Drunk"</p>
+                <audio controls class="audio-drunk">
+                    <source src="static/snippet/Solus%20Noir%20-%20Drunk%20(snippet).wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </section>
+
+        <section class="songs-section">
+    <h3>Our Latest Tracks</h3>
+    <ul class="song-list">
+        
+    </ul>
+</section>
+
+<style>
+    /* Simple Black & White Styling for Songs */
+    .songs-section {
+        background-color: black;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .songs-section h3 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .song-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .song-item {
+        margin: 15px 0;
+        padding: 10px;
+        border: 1px solid white;
+        background-color: #333;
+        display: inline-block;
+        width: 90%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .song-item h4 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    audio {
+        width: 100%;
+        margin-top: 10px;
+    }
+</style>
+
+        <!-- Latest Release Section -->
+        <section class="latest-release">
+            <h2 class="spotify-container">Latest Spotify Release:</h2>
+            <div class="spotify-container">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1pymWT6fxhVOjzCjacufk2?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Portfolio Preview Section -->
+        <section class="portfolio-preview">
+            <h2 class="section-title">Explore My Latest Audio Demos</h2>
+            <div class="audio-preview-container">
+                <h3 class="demos-title">Audio Demos</h3>
+                
+                <p class="no-demos-message">No demos available. Stay tuned for more updates!</p>
+                
+            </div>
+
+            <!-- View Full Portfolio Button -->
+            <div class="portfolio-button">
+                <a href="portfolio" class="cta-button">View Full Portfolio</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Solus Noir. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/solus.noir" target="_blank" aria-label="Instagram">
+                <p>instagram</p>
+            </a>
+            <a href="https://www.youtube.com/channel/YOUR_CHANNEL_ID" target="_blank" aria-label="YouTube">
+                <p>youtube</p>
+            </a>
+        </div>
+    </footer>
+
+    <script src="static/js/scripts.js"></script>
+</body>
+
+</html>

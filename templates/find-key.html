@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Key and BPM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        body {
+            background-color: #000000f6;
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 16px;
+            margin: 0;
+            padding: 50px;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: block;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+            padding: 5px;
+            margin-right: 50px;
+            z-index: 11;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+        }
+
+        .nav-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+        }
+
+        /* Container Styles */
+        .container {
+            background-color: #111;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+            margin: 120px auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #222;
+            color: #e0e0e0;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Loading Bar */
+        #loading-bar {
+            width: 0;
+            height: 10px;
+            background-color: #4CAF50;
+            margin-top: 20px;
+            display: none;
+        }
+
+        /* Result Section */
+        #result {
+            margin-top: 20px;
+        }
+
+        #result p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        #error-message {
+            color: red;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="nav-container">
+            <h1 id="main-title">SOLUS NOIR</h1>
+            <button class="menu-toggle" aria-label="Menu Toggle">☰</button>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="/" class="nav-link">Home</a></li>
+                    <li><a href="/portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="/store" class="nav-link">Store</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link">Tools</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/convert" class="nav-link">Audio Conversion</a></li>
+                            <li><a href="/find-key" class="nav-link">Find Key</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content container -->
+    <div class="container">
+        <h1>Find Key and BPM</h1>
+
+        <!-- Upload Form -->
+        <form id="upload-form" action="/find-key" method="POST" enctype="multipart/form-data">
+            <input type="file" id="audio" name="audio" accept="audio/*" required>
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Loading Bar -->
+        <div id="loading-bar"></div>
+
+        <!-- Result Display -->
+        <div id="result">
+            <p>Key: <span id="key">N/A</span></p>
+            <p>Scale: <span id="scale">N/A</span></p>
+            <p>Confidence: <span id="confidence">N/A</span></p>
+            <p>BPM: <span id="bpm">N/A</span></p>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            document.getElementById('loading-bar').style.display = 'block'; // Show loading bar
+
+            // Simulate the loading bar progress
+            let progress = 0;
+            let interval = setInterval(function() {
+                if (progress < 100) {
+                    progress += 5;
+                    document.getElementById('loading-bar').style.width = progress + '%';
+                } else {
+                    clearInterval(interval);
+                }
+            }, 200);
+
+            fetch('/find-key', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the results
+                document.getElementById('key').innerText = data.key;
+                document.getElementById('scale').innerText = data.scale;
+                document.getElementById('confidence').innerText = data.key_confidence;
+                document.getElementById('bpm').innerText = data.bpm;
+
+                // Show the result and hide the loading bar
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('loading-bar').style.display = 'none';
+            })
+            .catch(error => {
+                // Show error message
+                document.getElementById('error-message').innerText = 'An error occurred while processing the file.';
+                document.getElementById('loading-bar').style.display = 'none';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

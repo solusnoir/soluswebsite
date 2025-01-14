@@ -1,0 +1,9 @@
+venv/
+venv_new/
+new_env/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.git
+uploads/
